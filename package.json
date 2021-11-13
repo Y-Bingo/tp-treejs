@@ -1,0 +1,18 @@
+{
+	"name": "tp_treejs",
+	"version": "1.0.0",
+	"description": "treeJs 练习实践",
+	"main": "''",
+	"scripts": {
+		"dev": "lite-server"
+	},
+	"author": "Bingo",
+	"license": "ISC",
+	"dependencies": {
+		"systemjs": "^6.11.0",
+		"systemjs-babel": "^0.3.1"
+	},
+	"devDependencies": {
+		"lite-server": "^2.5.4"
+	}
+}

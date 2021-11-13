@@ -1,0 +1,4 @@
+{
+	"port": 9933,
+	"files": ["./src/**/*.{html,htm,css,js}"]
+}
