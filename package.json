@@ -4,15 +4,22 @@
 	"description": "treeJs 练习实践",
 	"main": "''",
 	"scripts": {
-		"dev": "lite-server"
+		"dev": "webpack-dev-server",
+		"build": "webpack"
 	},
+	"keywords": [
+		"WebGL",
+		"Tree.js",
+		"typescript"
+	],
 	"author": "Bingo",
 	"license": "ISC",
-	"dependencies": {
-		"systemjs": "^6.11.0",
-		"systemjs-babel": "^0.3.1"
-	},
 	"devDependencies": {
-		"lite-server": "^2.5.4"
+		"html-webpack-plugin": "^5.5.0",
+		"ts-loader": "^9.2.6",
+		"typescript": "^4.4.4",
+		"webpack": "^5.62.1",
+		"webpack-cli": "^4.9.1",
+		"webpack-dev-server": "^4.4.0"
 	}
 }
