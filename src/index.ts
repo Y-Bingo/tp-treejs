@@ -1,3 +1,3 @@
 // import './demo/webglDemo';
-import "./demo/TreeJsDemo";
+import "./demo/ThreeJsDemo";
 

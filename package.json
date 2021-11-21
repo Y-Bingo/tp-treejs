@@ -1,7 +1,7 @@
 {
-	"name": "tp_treejs",
+	"name": "tp_threejs",
 	"version": "1.0.0",
-	"description": "treeJs 练习实践",
+	"description": "threeJs 练习实践",
 	"main": "''",
 	"scripts": {
 		"dev": "webpack-dev-server",
@@ -9,7 +9,7 @@
 	},
 	"keywords": [
 		"WebGL",
-		"Tree.js",
+		"Three.js",
 		"typescript"
 	],
 	"author": "Bingo",
