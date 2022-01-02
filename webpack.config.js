@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
 	mode: 'development',
-	devtool: 'inline-source-map',
+	devtool: 'source-map',
 	cache: {
 		type: 'filesystem',
 	},
@@ -42,6 +42,6 @@ module.exports = {
 		port: 9933, // 设置端口号,默认端口号为8080
 		historyApiFallback: true, //让所有404错误的页面定位到index.html
 		hot: true,
-		open: true, //启动服务器时，自动打开浏览器，默认为false
+		open: false, //启动服务器时，自动打开浏览器，默认为false
 	},
 };
