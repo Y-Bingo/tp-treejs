@@ -1,9 +1,13 @@
 import BaseApplication from './demo/BaseDemo';
 import { Demo01, DEMO_01_NAME } from './demo/Demo01';
+import { Demo02, DEMO_02_NAME } from './demo/Demo02';
 
+
+DEMO_02_NAME;
 const appMap = {
 	null: null,
 	[DEMO_01_NAME]: Demo01,
+	[DEMO_02_NAME]: Demo02,
 };
 let count = 0;
 let curAppIns: BaseApplication = null;
