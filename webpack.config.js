@@ -41,7 +41,7 @@ module.exports = {
 		host: 'localhost', // 设置主机名，默认为"localhost"
 		port: 9933, // 设置端口号,默认端口号为8080
 		historyApiFallback: true, //让所有404错误的页面定位到index.html
-		hot: true,
+		hot: false,
 		open: false, //启动服务器时，自动打开浏览器，默认为false
 	},
 };
