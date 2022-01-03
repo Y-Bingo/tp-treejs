@@ -2,7 +2,7 @@
  * webgl 实战
  */
 // @
-import { Matrix4 } from '../utils/matrix';
+import { Matrix4 } from './matrix';
 
 // 获取上下文
 const canvas = document.getElementById('canvas') as HTMLCanvasElement;

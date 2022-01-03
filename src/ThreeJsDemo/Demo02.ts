@@ -17,7 +17,7 @@ import BaseApplication from './BaseDemo';
 export const DEMO_02_NAME = '02 渲染一个三角形';
 
 /**
- *  01 渲染一个正方体
+ *  02 渲染一个正方体
  */
 export class Demo02 extends BaseApplication {
 	public appName: string = DEMO_02_NAME;
