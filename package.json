@@ -23,7 +23,7 @@
 		"webpack-dev-server": "^4.4.0"
 	},
 	"dependencies": {
-		"three": "^0.134.0",
-		"@types/three": "^0.134.0"
+		"@types/three": "^0.136.0",
+		"three": "^0.136.0"
 	}
 }
