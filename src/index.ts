@@ -1,18 +1,12 @@
-import BaseApplication from './demo/BaseDemo';
-import { Demo01, DEMO_01_NAME } from './demo/Demo01';
-import { Demo02, DEMO_02_NAME } from './demo/Demo02';
+import { appMap, STAGE_HEIGHT, STAGE_WIDTH } from './Config';
+import BaseApplication from './ThreeJsDemo/BaseDemo';
 
-
-DEMO_02_NAME;
-const appMap = {
-	null: null,
-	[DEMO_01_NAME]: Demo01,
-	[DEMO_02_NAME]: Demo02,
-};
 let count = 0;
 let curAppIns: BaseApplication = null;
-const canvas: HTMLCanvasElement = document.getElementById('canvas') as HTMLCanvasElement;
 const select: HTMLSelectElement = document.getElementById('select') as HTMLSelectElement;
+const canvas: HTMLCanvasElement = document.getElementById('canvas') as HTMLCanvasElement;
+canvas.width = STAGE_WIDTH;
+canvas.height = STAGE_HEIGHT;
 
 function addItem(select: HTMLSelectElement, value: string): void {
 	select.options.add(new Option(value, value));

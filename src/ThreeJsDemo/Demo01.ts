@@ -1,4 +1,4 @@
-import { AmbientLight, BoxGeometry, Camera, Mesh, MeshLambertMaterial, PerspectiveCamera, PointLight, Scene, Vector3, WebGLRenderer } from 'three';
+import { AmbientLight, BoxGeometry, Camera, Mesh, MeshLambertMaterial, PerspectiveCamera, PointLight, Vector3 } from 'three';
 import BaseApplication from './BaseDemo';
 
 export const DEMO_01_NAME = '01 渲染一个正方体';
@@ -8,10 +8,7 @@ export const DEMO_01_NAME = '01 渲染一个正方体';
  */
 export class Demo01 extends BaseApplication {
 	public appName: string = DEMO_01_NAME;
-	private scene: Scene;
 	private camera: Camera;
-	private renderer: WebGLRenderer;
-	private viewCenter: Vector3;
 
 	/** @override */
 	public onCreate(): void {
@@ -23,24 +20,10 @@ export class Demo01 extends BaseApplication {
 		this.initObject();
 	}
 
-	private initRender(): void {
-		const renderer = new WebGLRenderer({
-			antialias: true, // 抗锯齿开启
-			canvas: this.canvas,
-		});
-		renderer.setSize(this.width, this.height); // 设置渲染器的宽度和高度
-		renderer.setClearColor('#000000', 1.0); // 设置背景颜色
-		renderer.setPixelRatio(this.devicePixelRatio); // 设置设备像素比
-
-		this.renderer = renderer;
-	}
-
-	private initScene(): void {
-		const scene = new Scene();
-		this.scene = scene;
-	}
-
-	private initCamera(): void {
+	/**
+	 * @override
+	 */
+	protected initCamera(): void {
 		const camera = new PerspectiveCamera(45, this.width / this.height, 100);
 		camera.position.set(200, 400, 600); // 设置相机位置
 		camera.up.set(0, 1, 0); // 设置相机正方向
@@ -50,7 +33,10 @@ export class Demo01 extends BaseApplication {
 		this.scene.add(camera);
 	}
 
-	private initLight(): void {
+	/**
+	 * @override
+	 */
+	protected initLight(): void {
 		// 点光源
 		const pointLight = new PointLight(0xffffff, 1, 1000);
 		pointLight.position.set(70, 112, 98);
@@ -61,8 +47,11 @@ export class Demo01 extends BaseApplication {
 		this.scene.add(ambientLight);
 	}
 
+	/**
+	 * @override
+	 */
 	private cube: Mesh;
-	private initObject(): void {
+	protected initObject(): void {
 		const geometry = new BoxGeometry(100, 100, 100);
 		const material = new MeshLambertMaterial({ color: 0xffffff });
 		const cube = new Mesh(geometry, material);
