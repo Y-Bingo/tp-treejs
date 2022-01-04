@@ -1,4 +1,4 @@
-import { BufferAttribute, BufferGeometry, Camera, Line, LineBasicMaterial, PerspectiveCamera } from 'three';
+import { BufferAttribute, BufferGeometry, Line, LineBasicMaterial, PerspectiveCamera } from 'three';
 import BaseApplication from './BaseDemo';
 
 export const DEMO_03_NAME = '03 绘制一条线';
@@ -8,17 +8,6 @@ export const DEMO_03_NAME = '03 绘制一条线';
  */
 export class Demo03 extends BaseApplication {
 	public appName: string = DEMO_03_NAME;
-
-	private camera: Camera;
-
-	/** @override */
-	public onCreate(): void {
-		this.initRender();
-		this.initScene();
-		this.initCamera();
-		this.initLight();
-		this.initObject();
-	}
 
 	/**
 	 * @override
@@ -52,14 +41,5 @@ export class Demo03 extends BaseApplication {
 		this.renderer;
 		this.renderer.render(this.scene, this.camera);
 		requestAnimationFrame(this.render.bind(this));
-	}
-
-	/**
-	 * @override
-	 */
-	public destroy(): void {
-		this.scene.clear();
-		this.renderer.clear();
-		console.log(`销毁应用【${this.appName}】`);
 	}
 }

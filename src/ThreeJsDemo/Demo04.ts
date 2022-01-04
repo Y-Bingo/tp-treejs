@@ -1,8 +1,4 @@
-import {
-    BoxGeometry, Camera,
-    DirectionalLight, Mesh, MeshPhongMaterial,
-    PerspectiveCamera, TextureLoader
-} from 'three';
+import { BoxGeometry, DirectionalLight, Mesh, MeshPhongMaterial, PerspectiveCamera, TextureLoader } from 'three';
 import BaseApplication from './BaseDemo';
 
 export const DEMO_04_NAME = '04 简单用例';
@@ -12,17 +8,6 @@ export const DEMO_04_NAME = '04 简单用例';
  */
 export class Demo04 extends BaseApplication {
 	public appName: string = DEMO_04_NAME;
-
-	private camera: Camera;
-
-	/** @override */
-	public onCreate(): void {
-		this.initRender();
-		this.initScene();
-		this.initCamera();
-		this.initLight();
-		this.initObject();
-	}
 
 	/**
 	 * @override
@@ -51,7 +36,7 @@ export class Demo04 extends BaseApplication {
 	private cube: Mesh;
 	protected initObject(): void {
 		// 获取纹理
-		const map = new TextureLoader().load('./resource/textures/disturb.jpg');;
+		const map = new TextureLoader().load('./resource/textures/disturb.jpg');
 		const material = new MeshPhongMaterial({ map: map });
 		const geometry = new BoxGeometry(1, 1, 1);
 		const cube = new Mesh(geometry, material);
@@ -67,16 +52,5 @@ export class Demo04 extends BaseApplication {
 		this.renderer.render(this.scene, this.camera);
 		this.cube.rotation.x += 0.02;
 		this.cube.rotation.y += 0.02;
-
-		requestAnimationFrame(this.render.bind(this));
-	}
-
-	/**
-	 * @override
-	 */
-	public destroy(): void {
-		this.scene.clear();
-		this.renderer.clear();
-		console.log(`销毁应用【${this.appName}】`);
 	}
 }

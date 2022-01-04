@@ -1,4 +1,4 @@
-import { AmbientLight, Camera, DoubleSide, Mesh, MeshBasicMaterial, PerspectiveCamera, PointLight, Shape, ShapeGeometry, Vector3 } from 'three';
+import { AmbientLight, DoubleSide, Mesh, MeshBasicMaterial, PerspectiveCamera, PointLight, Shape, ShapeGeometry } from 'three';
 import BaseApplication from './BaseDemo';
 
 export const DEMO_02_NAME = '02 渲染一个三角形';
@@ -8,17 +8,6 @@ export const DEMO_02_NAME = '02 渲染一个三角形';
  */
 export class Demo02 extends BaseApplication {
 	public appName: string = DEMO_02_NAME;
-	private camera: Camera;
-
-	/** @override */
-	public onCreate(): void {
-		this.viewCenter = new Vector3(0, 0, 0);
-		this.initRender();
-		this.initScene();
-		this.initCamera();
-		this.initLight();
-		this.initObject();
-	}
 
 	/**
 	 * @override
@@ -75,23 +64,11 @@ export class Demo02 extends BaseApplication {
 	/**
 	 * @override
 	 */
-	private handle: number = -1;
 	public render(): void {
 		this.renderer.clear();
 		this.renderer.render(this.scene, this.camera);
 		// this.triangle.rotation.x += 0.005;
 		// this.triangle.rotation.y += 0.005;
 		this.triangle.rotation.set(0, 0.05 + this.triangle.rotation.y, 0);
-		this.handle = requestAnimationFrame(this.render.bind(this));
-	}
-
-	/**
-	 * @override
-	 */
-	public destroy(): void {
-		this.scene.clear();
-		this.renderer.clear();
-		cancelAnimationFrame(this.handle);
-		console.log(`销毁应用【${this.appName}】`);
 	}
 }

@@ -1,15 +1,17 @@
-import { Scene, Vector3, WebGLRenderer } from 'three';
+import { Camera, Scene, Vector3, WebGLRenderer } from 'three';
 import { STAGE_HEIGHT, STAGE_WIDTH } from './../Config';
 /**
  * 应用基类
  */
 export default class BaseApplication {
+	public appName: string = 'BASE';
 	protected width: number = STAGE_WIDTH;
 	protected height: number = STAGE_HEIGHT;
 	protected devicePixelRatio: number = 1;
 	protected canvas: HTMLCanvasElement = null;
 
 	protected scene: Scene;
+	protected camera: Camera;
 	protected renderer: WebGLRenderer;
 	protected viewCenter: Vector3 = new Vector3(0, 0, 0);
 
@@ -44,6 +46,11 @@ export default class BaseApplication {
 	}
 
 	/**
+	 * @override
+	 */
+	protected initCamera(): void {}
+
+	/**
 	 * @override 子类覆写
 	 */
 	protected initLight(): void {}
@@ -57,17 +64,45 @@ export default class BaseApplication {
 	 * @override 子类覆写
 	 * 创建后的调用
 	 */
-	protected onCreate(): void {}
+	protected onCreate(): void {
+		this.initRender();
+		this.initScene();
+		this.initCamera();
+		this.initLight();
+		this.initObject();
+	}
 
 	/**
 	 * @override 子类覆写
 	 * 开始渲染
 	 */
-	public render(): void {}
+	protected render(): void {}
+
+	/**
+	 * @protected 子类覆写
+	 * 开始销毁
+	 */
+	protected onDestroy(): void {}
+
+	/**
+	 * 开始执行
+	 */
+	private handle: number = -1;
+	public run(): void {
+		this.render();
+		this.handle = requestAnimationFrame(this.run.bind(this));
+	}
 
 	/**
 	 * @override 子类覆写
 	 * 销毁清理
 	 */
-	public destroy(): void {}
+	public destroy(): void {
+		this.onDestroy();
+
+		this.scene.clear();
+		this.renderer.clear();
+		cancelAnimationFrame(this.handle);
+		console.log(`销毁应用【${this.appName}】`);
+	}
 }

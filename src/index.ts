@@ -29,7 +29,7 @@ function runApplication(appCls: typeof BaseApplication): void {
 		return;
 	}
 	const appIns: BaseApplication = new appCls(canvas);
-	appIns.render();
+	appIns.run();
 	curAppIns = appIns;
 }
 
