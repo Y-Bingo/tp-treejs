@@ -1,11 +1,13 @@
 import { Demo01, DEMO_01_NAME } from './ThreeJsDemo/Demo01';
 import { Demo02, DEMO_02_NAME } from './ThreeJsDemo/Demo02';
 import { Demo03, DEMO_03_NAME } from './ThreeJsDemo/Demo03';
+import { Demo04, DEMO_04_NAME } from './ThreeJsDemo/Demo04';
 
 /** 舞台宽度 */
 export const STAGE_WIDTH = 800;
 /** 舞台高度 */
 export const STAGE_HEIGHT = 600;
+
 
 /**
  * 应用配置
@@ -15,4 +17,5 @@ export const appMap = {
 	[DEMO_01_NAME]: Demo01,
 	[DEMO_02_NAME]: Demo02,
 	[DEMO_03_NAME]: Demo03,
+	[DEMO_04_NAME]: Demo04,
 };

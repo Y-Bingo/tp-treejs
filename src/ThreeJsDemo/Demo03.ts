@@ -51,6 +51,7 @@ export class Demo03 extends BaseApplication {
 	public render(): void {
 		this.renderer;
 		this.renderer.render(this.scene, this.camera);
+		requestAnimationFrame(this.render.bind(this));
 	}
 
 	/**
