@@ -34,7 +34,7 @@ export class Demo04 extends BaseApplication {
 	 * @override
 	 */
 	private cube: Mesh;
-	protected initObject(): void {
+	protected initModel(): void {
 		// 获取纹理
 		const map = new TextureLoader().load('./resource/textures/disturb.jpg');
 		const material = new MeshPhongMaterial({ map: map });

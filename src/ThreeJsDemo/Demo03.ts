@@ -25,7 +25,7 @@ export class Demo03 extends BaseApplication {
 	/**
 	 * @override
 	 */
-	protected initObject(): void {
+	protected initModel(): void {
 		const material = new LineBasicMaterial({ color: 0x00ff00 });
 		const vertices = new Float32Array([-10.0, 0.0, 0.0, 0.0, 10.0, 0.0, 10.0, 0.0, 0.0]);
 		const geometry = new BufferGeometry();

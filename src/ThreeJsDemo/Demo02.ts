@@ -40,7 +40,7 @@ export class Demo02 extends BaseApplication {
 	 * @override
 	 */
 	private triangle: Mesh;
-	protected initObject(): void {
+	protected initModel(): void {
 		const triangleShape = new Shape();
 		triangleShape.moveTo(0, 100);
 		triangleShape.lineTo(-100, -100);

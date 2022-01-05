@@ -40,7 +40,7 @@ export class Demo01 extends BaseApplication {
 	 * @override
 	 */
 	private cube: Mesh;
-	protected initObject(): void {
+	protected initModel(): void {
 		const geometry = new BoxGeometry(100, 100, 100);
 		const material = new MeshLambertMaterial({ color: 0xffffff });
 		const cube = new Mesh(geometry, material);

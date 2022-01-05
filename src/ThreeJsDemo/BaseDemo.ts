@@ -58,7 +58,7 @@ export default class BaseApplication {
 	/**
 	 * @override 子类覆写
 	 */
-	protected initObject(): void {}
+	protected initModel(): void {}
 
 	/**
 	 * @override 子类覆写
@@ -69,7 +69,7 @@ export default class BaseApplication {
 		this.initScene();
 		this.initCamera();
 		this.initLight();
-		this.initObject();
+		this.initModel();
 	}
 
 	/**
