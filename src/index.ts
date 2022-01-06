@@ -1,50 +1,54 @@
-import { appMap, STAGE_HEIGHT, STAGE_WIDTH } from './Config';
+import { APP_CONFIG, STAGE_HEIGHT, STAGE_WIDTH } from './Config';
 import BaseApplication from './ThreeJsDemo/BaseDemo';
 
-let count = 0;
 let curAppIns: BaseApplication = null;
 const select: HTMLSelectElement = document.getElementById('select') as HTMLSelectElement;
 const canvas: HTMLCanvasElement = document.getElementById('canvas') as HTMLCanvasElement;
 canvas.width = STAGE_WIDTH;
 canvas.height = STAGE_HEIGHT;
 
-function addItem(select: HTMLSelectElement, value: string): void {
-	select.options.add(new Option(value, value));
+function addItem(select: HTMLSelectElement, text: string, value: string = text): void {
+	select.options.add(new Option(text, value));
 }
 
 function addItems(select: HTMLSelectElement): void {
-	for (let key in appMap) {
-		count++;
-		addItem(select, key);
-	}
+	APP_CONFIG.forEach(ele => {
+		addItem(select, `${ele.id} ${ele.title}`, JSON.stringify(ele));
+	});
 }
 
-function runApplication(appCls: typeof BaseApplication): void {
+function runApplication(appId: string, appName: string = appId): void {
 	if (curAppIns) {
 		curAppIns.destroy();
 		curAppIns = null;
 	}
-	if (!appCls) {
-		console.error(`不存在【${select.value}】的应用`);
-		return;
-	}
-	const appIns: BaseApplication = new appCls(canvas);
-	appIns.run();
-	curAppIns = appIns;
+	if (!appId || appId === '00') return;
+	import(`../src/ThreeJsDemo/Demo${appId}`)
+		.then(resp => {
+			const appClass = resp[`Demo${appId}`];
+			const appIns: BaseApplication = new appClass(canvas);
+			appIns.appId = appId;
+			appIns.appName = appName;
+			appIns.run();
+			curAppIns = appIns;
+		})
+		.catch(err => {
+			console.error(`加载【/Demo${appId}】失败:`, err);
+		});
 }
 
 function init(): void {
 	addItems(select);
 	select.onchange = (): void => {
-		const appCls = appMap[select.value];
-		runApplication(appCls);
+		const item = JSON.parse(select.value);
+		runApplication(item.id, item.title);
 	};
 }
 
 function run(): void {
 	init();
-	select.selectedIndex = count - 1;
-	runApplication(appMap[select.value]);
+	select.selectedIndex = APP_CONFIG.length - 1;
+	runApplication(APP_CONFIG[select.selectedIndex].id);
 }
 
 run();

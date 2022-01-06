@@ -1,14 +1,11 @@
 import { AmbientLight, BoxGeometry, Mesh, MeshLambertMaterial, PerspectiveCamera, PointLight } from 'three';
 import BaseApplication from './BaseDemo';
 
-export const DEMO_01_NAME = '01 渲染一个正方体';
-
 /**
- *  01 渲染一个正方体
+ * 01
+ * 渲染一个正方体
  */
 export class Demo01 extends BaseApplication {
-	public appName: string = DEMO_01_NAME;
-
 	/**
 	 * @override
 	 */

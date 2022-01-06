@@ -28,13 +28,11 @@ import {
 } from 'three';
 import BaseApplication from './BaseDemo';
 
-export const DEMO_05_NAME = '05 内置几何';
-
 /**
- *  05 内置几何
+ * 05
+ * 内置几何
  */
 export class Demo05 extends BaseApplication {
-	public appName: string = DEMO_05_NAME;
 	/**
 	 * @override
 	 */

@@ -2,14 +2,11 @@ import { AmbientLight, BoxGeometry, DoubleSide, Mesh, MeshLambertMaterial, Persp
 import { TrackballControls } from 'three-trackballcontrols-ts';
 import BaseApplication from './BaseDemo';
 
-export const DEMO_06_NAME = '06 使用轨迹球插件（TRACKBALL）';
-
 /**
- *  06 使用轨迹球插件（TRACKBALL）
+ * 06
+ * 使用轨迹球插件（TRACKBALL）
  */
 export class Demo06 extends BaseApplication {
-	public appName: string = DEMO_06_NAME;
-
 	/**
 	 * @override
 	 */

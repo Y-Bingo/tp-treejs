@@ -1,14 +1,11 @@
 import { BoxGeometry, DirectionalLight, Mesh, MeshPhongMaterial, PerspectiveCamera, TextureLoader } from 'three';
 import BaseApplication from './BaseDemo';
 
-export const DEMO_04_NAME = '04 简单用例';
-
 /**
- *  04 简单用例
+ * 04 
+ * 简单用例
  */
 export class Demo04 extends BaseApplication {
-	public appName: string = DEMO_04_NAME;
-
 	/**
 	 * @override
 	 */

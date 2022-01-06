@@ -4,6 +4,7 @@ import { STAGE_HEIGHT, STAGE_WIDTH } from './../Config';
  * 应用基类
  */
 export default class BaseApplication {
+	public appId: string = '00';
 	public appName: string = 'BASE';
 	protected width: number = STAGE_WIDTH;
 	protected height: number = STAGE_HEIGHT;
@@ -108,6 +109,6 @@ export default class BaseApplication {
 		this.scene.clear();
 		this.renderer.clear();
 		cancelAnimationFrame(this.handle);
-		console.log(`销毁应用【${this.appName}】`);
+		console.log(`销毁应用【${this.appId} ${this.appName}】`);
 	}
 }

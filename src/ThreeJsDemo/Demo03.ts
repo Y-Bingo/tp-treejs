@@ -1,14 +1,11 @@
 import { BufferAttribute, BufferGeometry, Line, LineBasicMaterial, PerspectiveCamera } from 'three';
 import BaseApplication from './BaseDemo';
 
-export const DEMO_03_NAME = '03 绘制一条线';
-
 /**
- *  03 绘制一条线
+ * 03
+ * 绘制一条线
  */
 export class Demo03 extends BaseApplication {
-	public appName: string = DEMO_03_NAME;
-
 	/**
 	 * @override
 	 */
