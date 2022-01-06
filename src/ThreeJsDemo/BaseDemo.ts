@@ -19,7 +19,7 @@ export default class BaseApplication {
 		this.canvas = canvas;
 		this.devicePixelRatio = window.devicePixelRatio;
 
-		this.onCreate();
+		this.create();
 	}
 
 	/**
@@ -61,16 +61,9 @@ export default class BaseApplication {
 	protected initModel(): void {}
 
 	/**
-	 * @override 子类覆写
-	 * 创建后的调用
+	 * @override 子类复写
 	 */
-	protected onCreate(): void {
-		this.initRender();
-		this.initScene();
-		this.initCamera();
-		this.initLight();
-		this.initModel();
-	}
+	protected onCreate(): void {}
 
 	/**
 	 * @override 子类覆写
@@ -83,6 +76,18 @@ export default class BaseApplication {
 	 * 开始销毁
 	 */
 	protected onDestroy(): void {}
+
+	/**
+	 * 创建后的调用
+	 */
+	private create(): void {
+		this.initRender();
+		this.initScene();
+		this.initCamera();
+		this.initLight();
+		this.initModel();
+		this.onCreate();
+	}
 
 	/**
 	 * 开始执行
