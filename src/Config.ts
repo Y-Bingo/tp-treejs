@@ -32,4 +32,8 @@ export const APP_CONFIG = [
 		id: '06',
 		title: '使用轨迹球插件（TRACKBALL）',
 	},
+	{
+		id: '07',
+		title: '增加场景辅助',
+	},
 ];
