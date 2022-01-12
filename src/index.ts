@@ -1,5 +1,5 @@
-import { APP_CONFIG, STAGE_HEIGHT, STAGE_WIDTH } from './Config';
-import BaseApplication from './ThreeJsDemo/BaseDemo';
+import { APP_CONFIG, EAppType, STAGE_HEIGHT, STAGE_WIDTH } from './Config';
+import { BaseApplication } from './ThreeJs/BaseApplication';
 
 let curAppIns: BaseApplication = null;
 const select: HTMLSelectElement = document.getElementById('select') as HTMLSelectElement;
@@ -17,23 +17,24 @@ function addItems(select: HTMLSelectElement): void {
 	});
 }
 
-function runApplication(appId: string, appName: string = appId): void {
+function runApplication(config: { id: string; title: string; type?: EAppType }): void {
 	if (curAppIns) {
 		curAppIns.destroy();
 		curAppIns = null;
 	}
-	if (!appId || appId === '00') return;
-	import(`../src/ThreeJsDemo/Demo${appId}`)
+	if (!config.id || config.title === '00') return;
+	const type = config.type || EAppType.DEMO;
+	import(`../src/ThreeJs/${type}/${type + config.id}`)
 		.then(resp => {
-			const appClass = resp[`Demo${appId}`];
+			const appClass = resp[`${type + config.id}`];
 			const appIns: BaseApplication = new appClass(canvas);
-			appIns.appId = appId;
-			appIns.appName = appName;
+			appIns.appId = config.id;
+			appIns.appName = config.title;
 			appIns.run();
 			curAppIns = appIns;
 		})
 		.catch(err => {
-			console.error(`加载【/Demo${appId}】失败:`, err);
+			console.error(`加载【${type + config.id}】失败:`, err);
 		});
 }
 
@@ -41,14 +42,14 @@ function init(): void {
 	addItems(select);
 	select.onchange = (): void => {
 		const item = JSON.parse(select.value);
-		runApplication(item.id, item.title);
+		runApplication(item);
 	};
 }
 
 function run(): void {
 	init();
 	select.selectedIndex = APP_CONFIG.length - 1;
-	runApplication(APP_CONFIG[select.selectedIndex].id);
+	runApplication(APP_CONFIG[select.selectedIndex]);
 }
 
 run();

@@ -1,12 +1,13 @@
 import { AmbientLight, BoxGeometry, DoubleSide, Mesh, MeshLambertMaterial, PerspectiveCamera, PointLight, TextureLoader } from 'three';
 import { TrackballControls } from 'three-trackballcontrols-ts';
-import BaseApplication from './BaseDemo';
+import { BaseDemo } from './BaseDemo';
+
 
 /**
  * 06
  * 使用轨迹球插件（TRACKBALL）
  */
-export class Demo06 extends BaseApplication {
+export class Demo06 extends BaseDemo {
 	/**
 	 * @override
 	 */

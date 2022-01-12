@@ -1,9 +1,10 @@
 import { Camera, Scene, Vector3, WebGLRenderer } from 'three';
-import { STAGE_HEIGHT, STAGE_WIDTH } from './../Config';
+import { STAGE_HEIGHT, STAGE_WIDTH } from '../Config';
+
 /**
  * 应用基类
  */
-export default class BaseApplication {
+export  class BaseApplication {
 	public appId: string = '00';
 	public appName: string = 'BASE';
 	protected width: number = STAGE_WIDTH;

@@ -1,11 +1,12 @@
 import { BufferAttribute, BufferGeometry, Line, LineBasicMaterial, PerspectiveCamera } from 'three';
-import BaseApplication from './BaseDemo';
+import { BaseDemo } from './BaseDemo';
+
 
 /**
  * 03
  * 绘制一条线
  */
-export class Demo03 extends BaseApplication {
+export class Demo03 extends BaseDemo {
 	/**
 	 * @override
 	 */

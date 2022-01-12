@@ -1,11 +1,12 @@
 import { BoxGeometry, DirectionalLight, Mesh, MeshPhongMaterial, PerspectiveCamera, TextureLoader } from 'three';
-import BaseApplication from './BaseDemo';
+import { BaseDemo } from './BaseDemo';
+
 
 /**
  * 04 
  * 简单用例
  */
-export class Demo04 extends BaseApplication {
+export class Demo04 extends BaseDemo{
 	/**
 	 * @override
 	 */

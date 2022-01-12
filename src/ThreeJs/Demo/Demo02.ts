@@ -1,11 +1,12 @@
 import { AmbientLight, DoubleSide, Mesh, MeshBasicMaterial, PerspectiveCamera, PointLight, Shape, ShapeGeometry } from 'three';
-import BaseApplication from './BaseDemo';
+import { BaseDemo } from './BaseDemo';
+
 
 /**
  * 02
  * 渲染一个正方体
  */
-export class Demo02 extends BaseApplication {
+export class Demo02 extends BaseDemo {
 	/**
 	 * @override
 	 */

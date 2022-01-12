@@ -3,6 +3,14 @@ export const STAGE_WIDTH = 800;
 /** 舞台高度 */
 export const STAGE_HEIGHT = 600;
 
+/** 项目类型 */
+export enum EAppType {
+    /** demo 类型 */
+    DEMO  = 'Demo',
+    /** ThreeJs journey */
+    JOURNEY = 'Journey'
+}
+
 export const APP_CONFIG = [
 	{
 		id: '00',
@@ -35,5 +43,10 @@ export const APP_CONFIG = [
 	{
 		id: '07',
 		title: '增加场景辅助',
+	},
+	{
+		id: '05',
+		type: EAppType.JOURNEY,
+		title: 'Journey Transform Objects',
 	},
 ];

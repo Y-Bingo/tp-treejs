@@ -26,13 +26,14 @@ import {
     Vector2,
     Vector3
 } from 'three';
-import BaseApplication from './BaseDemo';
+import { BaseDemo } from './BaseDemo';
+
 
 /**
  * 05
  * 内置几何
  */
-export class Demo05 extends BaseApplication {
+export class Demo05 extends BaseDemo {
 	/**
 	 * @override
 	 */
