@@ -13,7 +13,8 @@ function addItem(select: HTMLSelectElement, text: string, value: string = text):
 
 function addItems(select: HTMLSelectElement): void {
 	APP_CONFIG.forEach(ele => {
-		addItem(select, `${ele.id} ${ele.title}`, JSON.stringify(ele));
+		const type = ele.type || EAppType.DEMO;
+		addItem(select, `${type} ${ele.id} ${ele.title}`, JSON.stringify(ele));
 	});
 }
 
