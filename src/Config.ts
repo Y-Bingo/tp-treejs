@@ -49,4 +49,9 @@ export const APP_CONFIG = [
 		type: EAppType.JOURNEY,
 		title: 'Journey Transform Objects',
 	},
+	{
+		id: '06',
+		type: EAppType.JOURNEY,
+		title: 'Journey Animations',
+	},
 ];
