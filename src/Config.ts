@@ -5,10 +5,10 @@ export const STAGE_HEIGHT = 600;
 
 /** 项目类型 */
 export enum EAppType {
-    /** demo 类型 */
-    DEMO  = 'Demo',
-    /** ThreeJs journey */
-    JOURNEY = 'Journey'
+	/** demo 类型 */
+	DEMO = 'Demo',
+	/** ThreeJs journey */
+	JOURNEY = 'Journey',
 }
 
 export const APP_CONFIG = [
@@ -53,5 +53,10 @@ export const APP_CONFIG = [
 		id: '06',
 		type: EAppType.JOURNEY,
 		title: 'Journey Animations',
+	},
+	{
+		id: '07',
+		type: EAppType.JOURNEY,
+		title: 'Journey Camera',
 	},
 ];
