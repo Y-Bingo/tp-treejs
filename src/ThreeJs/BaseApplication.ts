@@ -9,7 +9,6 @@ export class BaseApplication {
 	public appName: string = 'BASE';
 	protected width: number = STAGE.width;
 	protected height: number = STAGE.height;
-	protected devicePixelRatio: number = 1;
 	protected canvas: HTMLCanvasElement = null;
 
 	protected scene: Scene;
@@ -19,7 +18,6 @@ export class BaseApplication {
 
 	public constructor(canvas: HTMLCanvasElement) {
 		this.canvas = canvas;
-		this.devicePixelRatio = window.devicePixelRatio;
 
 		this.create();
 	}
@@ -34,7 +32,7 @@ export class BaseApplication {
 		});
 		renderer.setSize(this.width, this.height); // 设置渲染器的宽度和高度
 		renderer.setClearColor('#000000', 1.0); // 设置背景颜色
-		renderer.setPixelRatio(this.devicePixelRatio); // 设置设备像素比
+		renderer.setPixelRatio(window.devicePixelRatio); // 设置设备像素比
 
 		this.renderer = renderer;
 	}
@@ -122,6 +120,7 @@ export class BaseApplication {
 
 		// update renderer
 		this.renderer?.setSize(this.width, this.height);
+		this.renderer?.setPixelRatio(Math.min(2, window.devicePixelRatio));
 
 		this.onResize();
 	}
