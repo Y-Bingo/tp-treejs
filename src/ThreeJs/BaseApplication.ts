@@ -1,14 +1,14 @@
-import { Camera, Scene, Vector3, WebGLRenderer } from 'three';
-import { STAGE_HEIGHT, STAGE_WIDTH } from '../Config';
+import { Camera, PerspectiveCamera, Scene, Vector3, WebGLRenderer } from 'three';
+import { STAGE } from './../Config';
 
 /**
  * 应用基类
  */
-export  class BaseApplication {
+export class BaseApplication {
 	public appId: string = '00';
 	public appName: string = 'BASE';
-	protected width: number = STAGE_WIDTH;
-	protected height: number = STAGE_HEIGHT;
+	protected width: number = STAGE.width;
+	protected height: number = STAGE.height;
 	protected devicePixelRatio: number = 1;
 	protected canvas: HTMLCanvasElement = null;
 
@@ -74,10 +74,16 @@ export  class BaseApplication {
 	protected render(): void {}
 
 	/**
-	 * @protected 子类覆写
+	 * @override 子类覆写
 	 * 开始销毁
 	 */
 	protected onDestroy(): void {}
+
+	/**
+	 * @override 子类覆写
+	 * 开始 resize
+	 */
+	protected onResize(): void {}
 
 	/**
 	 * 创建后的调用
@@ -98,6 +104,26 @@ export  class BaseApplication {
 	public run(): void {
 		this.render();
 		this.handle = requestAnimationFrame(this.run.bind(this));
+	}
+
+	/**
+	 * 视口变化
+	 */
+	public resize(): void {
+		// update size
+		this.width = window.innerWidth;
+		this.height = window.innerHeight;
+
+		// update camera
+		if (this.camera && this.camera instanceof PerspectiveCamera) {
+			this.camera.aspect = this.width / this.height;
+			this.camera.updateProjectionMatrix();
+		}
+
+		// update renderer
+		this.renderer?.setSize(this.width, this.height);
+
+		this.onResize();
 	}
 
 	/**

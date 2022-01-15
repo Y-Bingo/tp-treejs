@@ -32,8 +32,7 @@ function runApplication(config: { id: string; title: string; type?: EAppType }):
 			appIns.run();
 			curAppIns = appIns;
 
-            // resize
-            window.addEventListener('resize', () => {})
+			window.addEventListener('resize', appIns.resize.bind(appIns));
 		})
 		.catch(err => {
 			console.error(`加载【${type + config.id}】失败:`, err);
