@@ -1,11 +1,9 @@
-import { APP_CONFIG, EAppType, STAGE_HEIGHT, STAGE_WIDTH } from './Config';
+import { APP_CONFIG, EAppType } from './Config';
 import { BaseApplication } from './ThreeJs/BaseApplication';
 
 let curAppIns: BaseApplication = null;
 const select: HTMLSelectElement = document.getElementById('select') as HTMLSelectElement;
 const canvas: HTMLCanvasElement = document.getElementById('canvas') as HTMLCanvasElement;
-canvas.width = STAGE_WIDTH;
-canvas.height = STAGE_HEIGHT;
 
 function addItem(select: HTMLSelectElement, text: string, value: string = text): void {
 	select.options.add(new Option(text, value));
@@ -33,6 +31,9 @@ function runApplication(config: { id: string; title: string; type?: EAppType }):
 			appIns.appName = config.title;
 			appIns.run();
 			curAppIns = appIns;
+
+            // resize
+            window.addEventListener('resize', () => {})
 		})
 		.catch(err => {
 			console.error(`加载【${type + config.id}】失败:`, err);

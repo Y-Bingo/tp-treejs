@@ -1,7 +1,12 @@
-/** 舞台宽度 */
-export const STAGE_WIDTH = 800;
-/** 舞台高度 */
-export const STAGE_HEIGHT = 600;
+/**
+ * 舞台参数
+ */
+export const STAGE = {
+	/** 舞台宽度 */
+	width: window.innerWidth,
+	/** 舞台高度 */
+	height: window.innerHeight,
+};
 
 /** 项目类型 */
 export enum EAppType {
