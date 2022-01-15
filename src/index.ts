@@ -45,12 +45,21 @@ function init(): void {
 		const item = JSON.parse(select.value);
 		runApplication(item);
 	};
+	select.selectedIndex = APP_CONFIG.length - 1;
+	runApplication(APP_CONFIG[select.selectedIndex]);
 }
 
 function run(): void {
 	init();
-	select.selectedIndex = APP_CONFIG.length - 1;
-	runApplication(APP_CONFIG[select.selectedIndex]);
+	window.addEventListener('dblclick', () => {
+		const fullScreenElement = document.fullscreenElement;
+
+		if (!fullScreenElement) {
+			canvas.requestFullscreen();
+		} else {
+			document.exitFullscreen();
+		}
+	});
 }
 
 run();
