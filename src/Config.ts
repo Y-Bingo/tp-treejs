@@ -52,16 +52,21 @@ export const APP_CONFIG = [
 	{
 		id: '05',
 		type: EAppType.JOURNEY,
-		title: 'Journey Transform Objects',
+		title: 'Journey-Transform Objects',
 	},
 	{
 		id: '06',
 		type: EAppType.JOURNEY,
-		title: 'Journey Animations',
+		title: 'Journey-Animations',
 	},
 	{
 		id: '07',
 		type: EAppType.JOURNEY,
-		title: 'Journey Camera',
+		title: 'Journey-Camera',
+	},
+	{
+		id: '09',
+		type: EAppType.JOURNEY,
+		title: 'Journey-Geometry',
 	},
 ];
