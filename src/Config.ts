@@ -74,4 +74,9 @@ export const APP_CONFIG = [
 		type: EAppType.JOURNEY,
 		title: 'Journey - Debug UI',
 	},
+	{
+		id: '11',
+		type: EAppType.JOURNEY,
+		title: 'Journey - Textures',
+	},
 ];

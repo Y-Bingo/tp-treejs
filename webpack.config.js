@@ -20,11 +20,25 @@ module.exports = {
 	},
 	module: {
 		rules: [
+			// TS
 			{
 				test: /.ts$/,
 				use: ['ts-loader'],
 				exclude: /node_modules/,
 			},
+			// Images
+			// {
+			// 	test: /\.(jpg|png|gif|svg)$/,
+			// 	use: [
+			// 		{
+			// 			loader: 'file-loader',
+			// 			options: {
+			// 				outputPath: 'assets/images/',
+			// 			},
+			// 		},
+			// 	],
+			// 	exclude: /node_modules/,
+			// },
 		],
 	},
 	plugins: [
