@@ -79,4 +79,9 @@ export const APP_CONFIG = [
 		type: EAppType.JOURNEY,
 		title: 'Journey - Textures',
 	},
+	{
+		id: '12',
+		type: EAppType.JOURNEY,
+		title: 'Journey - Material',
+	},
 ];
