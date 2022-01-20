@@ -7,10 +7,12 @@ import { BaseJourney } from './BaseJourney';
 /**
  * 10 Journey Debug UI
  */
+
 export class Journey10 extends BaseJourney {
 	/**
 	 * @override
 	 */
+	private gui: dat.GUI;
 	private controls: OrbitControls;
 	protected initCamera(): void {
 		const camera = new PerspectiveCamera(75, this.width / this.height);
@@ -54,6 +56,7 @@ export class Journey10 extends BaseJourney {
 			material.color.set(param.color);
 		});
 		basegui.add(param, 'spin');
+		this.gui = gui;
 	}
 
 	/**
@@ -62,5 +65,12 @@ export class Journey10 extends BaseJourney {
 	protected render(): void {
 		this.controls.update();
 		this.renderer.render(this.scene, this.camera);
+	}
+
+	/**
+	 * @protected
+	 */
+	protected onDestroy(): void {
+		this.gui?.destroy();
 	}
 }

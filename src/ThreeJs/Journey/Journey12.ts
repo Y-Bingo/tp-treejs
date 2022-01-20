@@ -17,8 +17,6 @@ import {
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { BaseJourney } from './BaseJourney';
 
-const gui = new dat.GUI();
-
 /**
  * 12 Journey materials
  */
@@ -26,6 +24,7 @@ export class Journey12 extends BaseJourney {
 	/**
 	 * @override
 	 */
+	private gui: dat.GUI;
 	private controls: OrbitControls;
 	protected initCamera(): void {
 		const camera = new PerspectiveCamera(75, this.width / this.height);
@@ -58,6 +57,10 @@ export class Journey12 extends BaseJourney {
 	 * @override
 	 */
 	protected initModel(): void {
+		// DEBUG UI
+		const gui = new dat.GUI();
+		this.gui = gui;
+
 		// Loader
 		const loadingMrg = new LoadingManager();
 		loadingMrg.onLoad = () => {
@@ -182,5 +185,12 @@ export class Journey12 extends BaseJourney {
 	protected render(): void {
 		this.controls.update();
 		this.renderer.render(this.scene, this.camera);
+	}
+
+	/**
+	 * @protected
+	 */
+	protected onDestroy(): void {
+		this.gui?.destroy();
 	}
 }
