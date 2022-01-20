@@ -84,4 +84,9 @@ export const APP_CONFIG = [
 		type: EAppType.JOURNEY,
 		title: 'Journey - Material',
 	},
+	{
+		id: '13',
+		type: EAppType.JOURNEY,
+		title: 'Journey - 3D Text',
+	},
 ];
