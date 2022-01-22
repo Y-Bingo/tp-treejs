@@ -63,7 +63,12 @@ export class BaseApplication {
 	/**
 	 * @override 子类复写
 	 */
-	protected onCreate(): void {}
+	protected onCreating(): void {}
+
+	/**
+	 * @override 子类复写
+	 */
+	protected onCreated(): void {}
 
 	/**
 	 * @override 子类覆写
@@ -87,12 +92,13 @@ export class BaseApplication {
 	 * 创建后的调用
 	 */
 	private create(): void {
+		this.onCreating();
 		this.initRender();
 		this.initScene();
 		this.initCamera();
 		this.initLight();
 		this.initModel();
-		this.onCreate();
+		this.onCreated();
 	}
 
 	/**
