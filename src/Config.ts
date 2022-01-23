@@ -99,4 +99,9 @@ export const APP_CONFIG = [
 		type: EAppType.JOURNEY,
 		title: 'Journey - Shadow',
 	},
+	{
+		id: '17',
+		type: EAppType.JOURNEY,
+		title: 'Journey - Haunted House',
+	},
 ];
