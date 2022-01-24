@@ -104,4 +104,9 @@ export const APP_CONFIG = [
 		type: EAppType.JOURNEY,
 		title: 'Journey - Haunted House',
 	},
+	{
+		id: '18',
+		type: EAppType.JOURNEY,
+		title: 'Journey - Particles',
+	},
 ];
