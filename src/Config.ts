@@ -109,4 +109,9 @@ export const APP_CONFIG = [
 		type: EAppType.JOURNEY,
 		title: 'Journey - Particles',
 	},
+	{
+		id: '19',
+		type: EAppType.JOURNEY,
+		title: 'Journey - Galaxy Generator',
+	},
 ];
