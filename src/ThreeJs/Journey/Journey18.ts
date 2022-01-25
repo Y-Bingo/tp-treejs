@@ -107,7 +107,9 @@ export class Journey18 extends BaseJourney {
 		for (let i = 0; i < 20000; i++) {
 			const i3 = i * 3;
 
-			this.particles.geometry.attributes.position.array[i3 + 1] = Math.sin(elapsedTime);
+			const array: any = this.particles.geometry.attributes.position.array;
+			const x = array[i3 + 0];
+			array[i3 + 1] = Math.sin(elapsedTime + x);
 		}
 		this.particles.geometry.attributes.position.needsUpdate = true;
 	}
