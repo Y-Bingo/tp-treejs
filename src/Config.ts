@@ -114,4 +114,9 @@ export const APP_CONFIG = [
 		type: EAppType.JOURNEY,
 		title: 'Journey - Galaxy Generator',
 	},
+	{
+		id: '20',
+		type: EAppType.JOURNEY,
+		title: 'Journey - RayCaster',
+	},
 ];

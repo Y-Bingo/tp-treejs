@@ -4,7 +4,7 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { BaseJourney } from './BaseJourney';
 
 /**
- * 18 Journey Particles
+ * Journey -  Particles
  */
 
 export class Journey18 extends BaseJourney {
