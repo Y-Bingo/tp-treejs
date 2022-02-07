@@ -18,8 +18,8 @@ export class Journey05 extends BaseJourney {
 	}
 
 	/**
-    * @override
-    */
+	 * @override
+	 */
 	protected initModel(): void {
 		const geometry = new BoxGeometry(1, 1, 1);
 		const material = new MeshBasicMaterial({ color: 0xff00 });
@@ -38,22 +38,22 @@ export class Journey05 extends BaseJourney {
 		group.add(mesh3);
 		this.scene.add(group);
 
-        const mesh = new Mesh(geometry, material);
-        mesh.position.y = 2;
-        mesh.scale.y = 0.5;
-        mesh.rotation.y = 2;
-        mesh.rotation.z = 3;
-        mesh.rotation.x = 2;
-        this.scene.add(mesh);
-        this.camera.lookAt(mesh.position)
+		const mesh = new Mesh(geometry, material);
+		mesh.position.y = 2;
+		mesh.scale.y = 0.5;
+		mesh.rotation.y = 2;
+		mesh.rotation.z = 3;
+		mesh.rotation.x = 2;
+		this.scene.add(mesh);
+		this.camera.lookAt(mesh.position);
 
-        // this.camera.position.set(2, 2, 3)
+		// this.camera.position.set(2, 2, 3)
 	}
 
 	/**
 	 * @override
 	 */
-	protected render(): void {
+	protected onRender(): void {
 		this.renderer.render(this.scene, this.camera);
 	}
 }

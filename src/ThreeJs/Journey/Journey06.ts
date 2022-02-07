@@ -38,7 +38,7 @@ export class Journey06 extends BaseJourney {
 	/**
 	 * @override
 	 */
-	protected render(): void {
+	protected onRender(): void {
 		// this.cube.rotation.y = this.clock.getElapsedTime() * Math.PI;
 		// this.cube.position.x = Math.sin(this.clock.getElapsedTime());
 		// this.camera.lookAt(this.cube.position);

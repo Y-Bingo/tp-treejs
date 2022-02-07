@@ -1,7 +1,6 @@
 import { BufferAttribute, BufferGeometry, Line, LineBasicMaterial, PerspectiveCamera } from 'three';
 import { BaseDemo } from './BaseDemo';
 
-
 /**
  * 03
  * 绘制一条线
@@ -35,9 +34,7 @@ export class Demo03 extends BaseDemo {
 	/**
 	 * @override
 	 */
-	public render(): void {
-		this.renderer;
+	public onRender(): void {
 		this.renderer.render(this.scene, this.camera);
-		requestAnimationFrame(this.render.bind(this));
 	}
 }

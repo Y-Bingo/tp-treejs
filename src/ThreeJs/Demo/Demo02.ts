@@ -62,7 +62,7 @@ export class Demo02 extends BaseDemo {
 	/**
 	 * @override
 	 */
-	public render(): void {
+	public onRender(): void {
 		this.renderer.clear();
 		this.renderer.render(this.scene, this.camera);
 		// this.triangle.rotation.x += 0.005;

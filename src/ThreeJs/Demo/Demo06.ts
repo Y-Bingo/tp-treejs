@@ -2,7 +2,6 @@ import { AmbientLight, BoxGeometry, DoubleSide, Mesh, MeshLambertMaterial, Persp
 import { TrackballControls } from 'three-trackballcontrols-ts';
 import { BaseDemo } from './BaseDemo';
 
-
 /**
  * 06
  * 使用轨迹球插件（TRACKBALL）
@@ -11,7 +10,7 @@ export class Demo06 extends BaseDemo {
 	/**
 	 * @override
 	 */
-	protected onCreate(): void {
+	protected onCreated(): void {
 		this.initController();
 	}
 
@@ -76,8 +75,8 @@ export class Demo06 extends BaseDemo {
 	/**
 	 * @override
 	 */
-	public render(): void {
-		this.controls.update();
+	public onRender(): void {
+		this.controls?.update();
 		this.renderer.render(this.scene, this.camera);
 	}
 }

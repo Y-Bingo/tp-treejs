@@ -18,8 +18,6 @@ export class BaseApplication {
 
 	public constructor(canvas: HTMLCanvasElement) {
 		this.canvas = canvas;
-
-		this.create();
 	}
 
 	/**
@@ -74,7 +72,7 @@ export class BaseApplication {
 	 * @override 子类覆写
 	 * 开始渲染
 	 */
-	protected render(): void {}
+	protected onRender(): void {}
 
 	/**
 	 * @override 子类覆写
@@ -102,12 +100,21 @@ export class BaseApplication {
 	}
 
 	/**
+	 * 渲染
+	 */
+	private render(): void {
+		this.renderer?.clear();
+		this.onRender();
+		this.handle = requestAnimationFrame(this.render.bind(this));
+	}
+
+	/**
 	 * 开始执行
 	 */
 	private handle: number = -1;
 	public run(): void {
+		this.create();
 		this.render();
-		this.handle = requestAnimationFrame(this.run.bind(this));
 	}
 
 	/**

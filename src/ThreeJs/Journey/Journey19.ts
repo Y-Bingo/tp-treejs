@@ -152,7 +152,7 @@ export class Journey19 extends BaseJourney {
 	/**
 	 * @override
 	 */
-	protected render(): void {
+	protected onRender(): void {
 		this.controls.update();
 		this.renderer.render(this.scene, this.camera);
 

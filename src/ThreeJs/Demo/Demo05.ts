@@ -163,7 +163,7 @@ export class Demo05 extends BaseDemo {
 	/**
 	 * @override
 	 */
-	public render(): void {
+	public onRender(): void {
 		const timer = Date.now() * 0.0001;
 
 		this.camera.position.x = Math.cos(timer) * 800;

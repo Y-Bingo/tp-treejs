@@ -1,12 +1,11 @@
 import { BoxGeometry, DirectionalLight, Mesh, MeshPhongMaterial, PerspectiveCamera, TextureLoader } from 'three';
 import { BaseDemo } from './BaseDemo';
 
-
 /**
- * 04 
+ * 04
  * 简单用例
  */
-export class Demo04 extends BaseDemo{
+export class Demo04 extends BaseDemo {
 	/**
 	 * @override
 	 */
@@ -45,8 +44,7 @@ export class Demo04 extends BaseDemo{
 	/**
 	 * @override
 	 */
-	public render(): void {
-		this.renderer;
+	public onRender(): void {
 		this.renderer.render(this.scene, this.camera);
 		this.cube.rotation.x += 0.02;
 		this.cube.rotation.y += 0.02;

@@ -105,7 +105,7 @@ export class Journey21 extends BaseJourney {
 	/**
 	 * @override
 	 */
-	protected render(): void {
+	protected onRender(): void {
 		this.renderer.render(this.scene, this.camera);
 
 		// animation

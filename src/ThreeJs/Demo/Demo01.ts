@@ -51,7 +51,7 @@ export class Demo01 extends BaseDemo {
 	/**
 	 * @override
 	 */
-	public render(): void {
+	public onRender(): void {
 		this.renderer.clear();
 		this.renderer.render(this.scene, this.camera);
 		this.cube.rotation.x += 0.005;
