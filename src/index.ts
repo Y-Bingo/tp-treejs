@@ -51,7 +51,7 @@ function init(): void {
 
 function run(): void {
 	init();
-	window.addEventListener('dblclick', () => {
+	canvas.addEventListener('dblclick', () => {
 		const fullScreenElement = document.fullscreenElement;
 
 		if (!fullScreenElement) {
