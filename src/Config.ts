@@ -119,4 +119,9 @@ export const APP_CONFIG = [
 		type: EAppType.JOURNEY,
 		title: 'Journey - RayCaster',
 	},
+	{
+		id: '21',
+		type: EAppType.JOURNEY,
+		title: 'Journey - Scroll Base Animation',
+	},
 ];
