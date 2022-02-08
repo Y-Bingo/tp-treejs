@@ -4,3 +4,4 @@ node_modules
 
 # FILE
 package-lock.json
+.vscode/settings.json

@@ -129,4 +129,9 @@ export const APP_CONFIG = [
 		type: EAppType.JOURNEY,
 		title: 'Journey - Physics',
 	},
+	{
+		id: '23',
+		type: EAppType.JOURNEY,
+		title: 'Journey - Imported Models',
+	},
 ];
