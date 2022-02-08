@@ -124,4 +124,9 @@ export const APP_CONFIG = [
 		type: EAppType.JOURNEY,
 		title: 'Journey - Scroll Base Animation',
 	},
+	{
+		id: '22',
+		type: EAppType.JOURNEY,
+		title: 'Journey - Physics',
+	},
 ];
