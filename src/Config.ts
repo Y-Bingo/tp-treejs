@@ -134,4 +134,9 @@ export const APP_CONFIG = [
 		type: EAppType.JOURNEY,
 		title: 'Journey - Imported Models',
 	},
+	{
+		id: '24',
+		type: EAppType.JOURNEY,
+		title: 'Journey - Custom Models',
+	},
 ];
