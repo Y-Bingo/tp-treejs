@@ -80,7 +80,7 @@ export class Journey24 extends BaseJourney {
 		const cubeTextureLoader = new THREE.CubeTextureLoader();
 
 		const dracoLoader = new DRACOLoader();
-		dracoLoader.setDecoderPath('/draco/');
+		dracoLoader.setDecoderPath('/resource/draco/');
 
 		const gltfLoader = new GLTFLoader();
 		gltfLoader.setDRACOLoader(dracoLoader);
