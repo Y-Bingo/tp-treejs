@@ -88,7 +88,10 @@ export class Journey24 extends BaseJourney {
 		gltfLoader.load(
 			'./resource/journey/models/hamburger/hamburger.glb',
 			gltf => {
-				this.scene.add(gltf.scene);
+				console.log(gltf);
+				const hamburger = gltf.scenes[0];
+				hamburger.scale.set(0.1, 0.1, 0.1);
+				this.scene.add(hamburger);
 			},
 			() => {
 				console.log('progress');
