@@ -12,7 +12,7 @@ export class Camera {
 	private scene: THREE.Scene;
 	private canvas: HTMLCanvasElement;
 	public instance: THREE.PerspectiveCamera;
-	private control: OrbitControls;
+	public control: OrbitControls;
 
 	/**
 	 * constructor

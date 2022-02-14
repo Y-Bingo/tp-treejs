@@ -45,6 +45,8 @@ export class Application {
 		this.camera = new Camera();
 		this.renderer = new Renderer();
 		this.world = new World();
+
+		window['application'] = this;
 	}
 
 	private onResize(): void {
@@ -66,5 +68,27 @@ export class Application {
 		this.camera.update();
 		this.world.update();
 		this.renderer.update();
+	}
+
+	public destroy(): void {
+		this.sizes.off('resize');
+		this.time.off('tick');
+
+		this.scene.traverse(child => {
+			if (child instanceof THREE.Mesh) {
+				child.geometry.dispose();
+
+				for (const key in child.material) {
+					const value = child.material[key];
+					if (value && typeof value.dispose === 'function') {
+						value.dispose();
+					}
+				}
+			}
+		});
+
+		this.camera.control.dispose();
+		this.renderer.instance.dispose();
+		this.debug.ui?.destroy();
 	}
 }
