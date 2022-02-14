@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import { Camera } from './Camera';
 import { Renderer } from './Renderer';
 import sources from './Source';
+import { Debug } from './Utils/Debug';
 import { Resource } from './Utils/Resource';
 import { Sizes } from './Utils/Sizes';
 import { Time } from './Utils/Time';
@@ -14,6 +15,7 @@ let instance = null;
  */
 export class Application {
 	public canvas: HTMLCanvasElement;
+	public debug: Debug;
 	public sizes: Sizes;
 	public time: Time;
 
@@ -33,6 +35,7 @@ export class Application {
 		this.canvas = canvas;
 
 		// Setup
+		this.debug = new Debug();
 		this.sizes = new Sizes();
 		this.sizes.on('resize', this.onResize.bind(this));
 		this.time = new Time();
@@ -61,7 +64,7 @@ export class Application {
 	private update(): void {
 		//
 		this.camera.update();
-        this.world.update();
+		this.world.update();
 		this.renderer.update();
 	}
 }
