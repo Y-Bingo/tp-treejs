@@ -12,7 +12,7 @@ export class Renderer {
 	private sizes: Sizes;
 	private scene: THREE.Scene;
 	public camera: Camera;
-	private instance: THREE.WebGLRenderer;
+	public instance: THREE.WebGLRenderer;
 
 	/**
 	 * constructor
