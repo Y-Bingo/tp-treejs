@@ -1,11 +1,16 @@
 import * as THREE from 'three';
 import { Application } from '../Application';
+import { Debug } from '../Utils/Debug';
 import { Resource } from '../Utils/Resource';
 
 export class Environment {
 	private application: Application;
 	private scene: THREE.Scene;
 	private resource: Resource;
+
+	private debug: Debug;
+	private debugFolder: any;
+
 	private sunLight: THREE.DirectionalLight;
 	private environmentMap: any;
 
@@ -16,6 +21,12 @@ export class Environment {
 		this.application = new Application();
 		this.scene = this.application.scene;
 		this.resource = this.application.resource;
+		this.debug = this.application.debug;
+
+		// debug
+		if (this.debug.active) {
+			this.debugFolder = this.debug.ui.addFolder('environment');
+		}
 
 		this.setSunLight();
 		this.setEnvironment();
@@ -30,6 +41,13 @@ export class Environment {
 		this.sunLight.position.set(3.5, 3, -2.25);
 
 		this.scene.add(this.sunLight);
+
+		if (this.debug.active) {
+			this.debugFolder.add(this.sunLight, 'intensity').name('sunLightIntensity').min(0).max(10).step(0.01); //
+			this.debugFolder.add(this.sunLight.position, 'x').name('sunLight-X').min(-5).max(5).step(0.01); //
+			this.debugFolder.add(this.sunLight.position, 'y').name('sunLight-Y').min(-5).max(5).step(0.01); //
+			this.debugFolder.add(this.sunLight.position, 'z').name('sunLight-Z').min(-5).max(5).step(0.01); //
+		}
 	}
 
 	private setEnvironment(): void {
@@ -46,8 +64,20 @@ export class Environment {
 				}
 			});
 		};
-        // this.scene.background = this.environmentMap.texture;
+		// this.scene.background = this.environmentMap.texture;
 		this.scene.environment = this.environmentMap.texture;
 		this.environmentMap.updateMaterials();
+
+		if (this.debug.active) {
+			this.debugFolder
+				.add(this.environmentMap, 'intensity')
+				.name('envMapIntensity')
+				.min(0)
+				.max(10)
+				.step(0.01)
+				.onChange(() => {
+					this.environmentMap.updateMaterials();
+				});
+		}
 	}
 }
