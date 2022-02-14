@@ -32,7 +32,7 @@ export class Time extends EventEmitter {
 		const currentTime = Date.now();
 		this.delta = currentTime - this.current;
 		this.elapsed = currentTime - this.start;
-		this.current = this.current;
+		this.current = currentTime;
 
 		this.trigger('tick');
 
