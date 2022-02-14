@@ -27,17 +27,17 @@ export class Environment {
 		this.sunLight.shadow.camera.far = 15;
 		this.sunLight.shadow.mapSize.set(1024, 1024);
 		this.sunLight.shadow.normalBias = 0.05;
-		this.sunLight.position.set(3.5, 2, 1.25);
+		this.sunLight.position.set(3.5, 3, -2.25);
 
 		this.scene.add(this.sunLight);
 	}
 
 	private setEnvironment(): void {
 		this.environmentMap = {};
-		this.environmentMap.intensity = 1.4;
+		this.environmentMap.intensity = 2.4;
 		this.environmentMap.texture = this.resource.items.environmentMapTexture;
 		this.environmentMap.texture.encoding = THREE.sRGBEncoding;
-		this.environmentMap.updateMaterial = () => {
+		this.environmentMap.updateMaterials = () => {
 			this.scene.children.forEach(child => {
 				if (child instanceof THREE.Mesh && child.material instanceof THREE.MeshStandardMaterial) {
 					child.material.envMap = this.environmentMap.texture;
@@ -46,8 +46,8 @@ export class Environment {
 				}
 			});
 		};
-        this.scene.background = this.environmentMap.texture;
+        // this.scene.background = this.environmentMap.texture;
 		this.scene.environment = this.environmentMap.texture;
-		this.environmentMap.updateMaterial();
+		this.environmentMap.updateMaterials();
 	}
 }

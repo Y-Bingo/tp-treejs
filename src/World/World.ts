@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import { Application } from '../Application';
 import { Resource } from '../Utils/Resource';
-import { Environment } from './Environment.';
+import { Environment } from './Environment';
 
 export class World {
 	private application: Application;
