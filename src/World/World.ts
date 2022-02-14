@@ -3,12 +3,14 @@ import { Application } from '../Application';
 import { Resource } from '../Utils/Resource';
 import { Environment } from './Environment';
 import { Floor } from './Floor';
+import { Fox } from './Fox';
 
 export class World {
 	private application: Application;
 	private scene: THREE.Scene;
 	private resource: Resource;
-    private floor: Floor;
+	private floor: Floor;
+	private fox: Fox;
 	private environment: Environment;
 	/**
 	 * constructor
@@ -22,13 +24,13 @@ export class World {
 	}
 
 	private onLoaded(): void {
-		// test mesh
-		const testMesh = new THREE.Mesh(new THREE.BoxBufferGeometry(1, 1, 1), new THREE.MeshStandardMaterial({ wireframe: false }));
-
-		this.scene.add(testMesh);
-
 		// Setup
-        this.floor = new Floor();
+		this.fox = new Fox();
+		this.floor = new Floor();
 		this.environment = new Environment();
+	}
+
+	public update(): void {
+		this.fox?.update();
 	}
 }

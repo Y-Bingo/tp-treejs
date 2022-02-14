@@ -61,6 +61,7 @@ export class Application {
 	private update(): void {
 		//
 		this.camera.update();
+        this.world.update();
 		this.renderer.update();
 	}
 }
