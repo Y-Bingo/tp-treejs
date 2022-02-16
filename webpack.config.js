@@ -8,7 +8,7 @@ module.exports = {
 	cache: {
 		type: 'filesystem',
 		store: 'pack',
-		// compression: 'gzip',
+		compression: 'gzip',
 	},
 	entry: './src/index.ts',
 	output: {
@@ -16,7 +16,7 @@ module.exports = {
 		path: path.resolve(__dirname, 'dist'),
 	},
 	resolve: {
-		extensions: ['.ts', '.js'],
+		extensions: ['.ts', '.js', 'glsl'],
 	},
 	module: {
 		rules: [
@@ -39,6 +39,12 @@ module.exports = {
 			// 	],
 			// 	exclude: /node_modules/,
 			// },
+			// Shaders
+			{
+				test: /\.(glsl|vs|vert|frg)$/,
+				exclude: /node_modules/,
+				use: ['raw-loader'],
+			},
 		],
 	},
 	plugins: [

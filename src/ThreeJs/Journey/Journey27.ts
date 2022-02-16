@@ -1,12 +1,13 @@
 import * as dat from 'dat.gui';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+import fragmentShader from '../Shaders/Test/test.fs.glsl';
+import vertexShader from '../Shaders/Test/test.vs.glsl';
 import { BaseJourney } from './BaseJourney';
 
 /**
  * Journey - Shaders
  */
-
 export class Journey27 extends BaseJourney {
 	private gui: dat.GUI;
 	private clock: THREE.Clock;
@@ -61,7 +62,11 @@ export class Journey27 extends BaseJourney {
 		const geometry = new THREE.PlaneBufferGeometry(1, 1, 32, 32);
 
 		// Material
-		const material = new THREE.MeshBasicMaterial({ color: 0xffffff });
+		// const material = new THREE.MeshBasicMaterial({ color: 0xffffff });
+		const material = new THREE.RawShaderMaterial({
+			vertexShader,
+			fragmentShader,
+		});
 
 		// Mesh
 		const mesh = new THREE.Mesh(geometry, material);
