@@ -1,6 +1,7 @@
 import * as dat from 'dat.gui';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+import { ColorGUIHelper } from '../../Helper/DebugHelper';
 import fragmentShader from '../Shaders/Test/test.fs.glsl';
 import vertexShader from '../Shaders/Test/test.vs.glsl';
 import { BaseJourney } from './BaseJourney';
@@ -57,20 +58,32 @@ export class Journey27 extends BaseJourney {
 	/**
 	 * @override
 	 */
+	private material: THREE.RawShaderMaterial;
 	protected initModel(): void {
+		const textureLoader = new THREE.TextureLoader();
+		const flagTexture = textureLoader.load('./resource/journey/flag-french.jpg');
+
 		// Geometry
 		const geometry = new THREE.PlaneBufferGeometry(1, 1, 32, 32);
 
-		// Material
-		// const material = new THREE.MeshBasicMaterial({ color: 0xffffff });
-		const material = new THREE.RawShaderMaterial({
+		// const material = new THREE.RawShaderMaterial({
+		const material = new THREE.ShaderMaterial({
 			vertexShader,
 			fragmentShader,
+			uniforms: {
+				uFrequency: { value: new THREE.Vector2(5, 5) },
+				uTime: { value: 0.0 },
+				uColor: { value: new THREE.Color('orange') },
+				uTexture: { value: flagTexture },
+			},
 		});
+		this.material = material;
+		this.gui.add(material.uniforms.uFrequency.value, 'x').min(0).max(10).name('FrequencyX');
+		this.gui.add(material.uniforms.uFrequency.value, 'y').min(0).max(10).name('FrequencyY');
+		this.gui.addColor(new ColorGUIHelper(material.uniforms.uColor, 'value'), 'value').name('uColor');
 
 		// Mesh
 		const mesh = new THREE.Mesh(geometry, material);
-
 		this.scene.add(mesh);
 	}
 
@@ -79,6 +92,8 @@ export class Journey27 extends BaseJourney {
 	 */
 	protected onRender(): void {
 		this.renderer.render(this.scene, this.camera);
+		let elapsedTime = this.clock.getElapsedTime();
+		this.material.uniforms.uTime.value = elapsedTime;
 	}
 
 	/**
