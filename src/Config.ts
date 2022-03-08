@@ -154,4 +154,9 @@ export const APP_CONFIG = [
 		type: EAppType.JOURNEY,
 		title: 'Journey - Shaders Patterns',
 	},
+	{
+		id: '29',
+		type: EAppType.JOURNEY,
+		title: 'Journey - Raging sea',
+	},
 ];
