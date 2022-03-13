@@ -159,4 +159,9 @@ export const APP_CONFIG = [
 		type: EAppType.JOURNEY,
 		title: 'Journey - Raging sea',
 	},
+	{
+		id: '30',
+		type: EAppType.JOURNEY,
+		title: 'Journey - Animated Galaxy',
+	},
 ];
