@@ -64,11 +64,12 @@ export class Journey30 extends BaseJourney {
 
 		const parameters = this.parameters;
 		const geometry = this.geometry;
-		const material = this.material;
 		const points = this.points;
+
 		const positions = new Float32Array(parameters.count * 3);
 		const colors = new Float32Array(parameters.count * 3);
-		const scale = new Float32Array(parameters.count);
+		const scale = new Float32Array(parameters.count * 1);
+		const randomness = new Float32Array(parameters.count * 3);
 
 		const insideColor = new THREE.Color(parameters.insideColor);
 		const outsideColor = new THREE.Color(parameters.outsideColor);
@@ -79,13 +80,17 @@ export class Journey30 extends BaseJourney {
 			const radius = Math.random() * parameters.radius;
 			const branchAngle = ((i % parameters.branches) / parameters.branches) * Math.PI * 2;
 
-			const randomX = Math.pow(Math.random(), parameters.randomnessPower) * (Math.random() > 0.5 ? 1 : -1) * parameters.randomness;
-			const randomY = Math.pow(Math.random(), parameters.randomnessPower) * (Math.random() > 0.5 ? 1 : -1) * parameters.randomness;
-			const randomZ = Math.pow(Math.random(), parameters.randomnessPower) * (Math.random() > 0.5 ? 1 : -1) * parameters.randomness;
+			positions[i3 + 0] = Math.cos(branchAngle) * radius;
+			positions[i3 + 1] = 0.0;
+			positions[i3 + 2] = Math.sin(branchAngle) * radius;
 
-			positions[i3 + 0] = Math.cos(branchAngle) * radius + randomX;
-			positions[i3 + 1] = randomY;
-			positions[i3 + 2] = Math.sin(branchAngle) * radius + randomZ;
+			const randomX = Math.pow(Math.random(), parameters.randomnessPower) * (Math.random() > 0.5 ? 1 : -1) * parameters.randomness * radius;
+			const randomY = Math.pow(Math.random(), parameters.randomnessPower) * (Math.random() > 0.5 ? 1 : -1) * parameters.randomness * radius;
+			const randomZ = Math.pow(Math.random(), parameters.randomnessPower) * (Math.random() > 0.5 ? 1 : -1) * parameters.randomness * radius;
+
+			randomness[i3 + 0] = randomX;
+			randomness[i3 + 1] = randomY;
+			randomness[i3 + 2] = randomZ;
 
 			// color
 			const mixedColor = insideColor.clone();
@@ -101,22 +106,18 @@ export class Journey30 extends BaseJourney {
 		geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
 		geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
 		geometry.setAttribute('aScale', new THREE.BufferAttribute(scale, 1));
+		geometry.setAttribute('aRandomness', new THREE.BufferAttribute(randomness, 3));
 
 		this.scene?.add(points);
 	}
 
 	protected initModel(): void {
 		const gui = this.gui;
-		const scene = this.scene;
-		const textureLoader = new THREE.TextureLoader();
-		const particlesTexture = textureLoader.load('./resource/journey/particles/2.png');
 
 		const parameters: any = {};
 		parameters.count = 20000;
-		parameters.size = 0.02;
 		parameters.radius = 5;
 		parameters.branches = 3;
-		parameters.spin = 1;
 		parameters.randomness = 0.5;
 		parameters.randomnessPower = 3;
 		parameters.insideColor = 0xff6030;
@@ -134,7 +135,8 @@ export class Journey30 extends BaseJourney {
 			vertexShader: galaxyVertexShader,
 			fragmentShader: galaxyFragmentShader,
 			uniforms: {
-				uSize: { value: 12 * this.renderer.getPixelRatio() },
+				uTime: { value: 0 },
+				uSize: { value: 30 * this.renderer.getPixelRatio() },
 			},
 		});
 
@@ -147,10 +149,8 @@ export class Journey30 extends BaseJourney {
 
 		// DEBUG
 		gui.add(parameters, 'count').min(100).max(100000).step(100).onFinishChange(this.generateGalaxy.bind(this));
-		gui.add(parameters, 'size').min(0.001).max(0.1).step(0.001).onFinishChange(this.generateGalaxy.bind(this));
 		gui.add(parameters, 'radius').min(0.01).max(20).step(0.001).onFinishChange(this.generateGalaxy.bind(this));
 		gui.add(parameters, 'branches').min(1).max(6).step(1).onFinishChange(this.generateGalaxy.bind(this));
-		gui.add(parameters, 'spin').min(-5).max(5).step(0.01).onFinishChange(this.generateGalaxy.bind(this));
 		gui.add(parameters, 'randomness').min(0.01).max(3).step(0.01).onFinishChange(this.generateGalaxy.bind(this));
 		gui.add(parameters, 'randomnessPower').min(1).max(5).step(0.1).onFinishChange(this.generateGalaxy.bind(this));
 		gui.addColor(parameters, 'insideColor').onFinishChange(this.generateGalaxy.bind(this));
@@ -165,6 +165,7 @@ export class Journey30 extends BaseJourney {
 		this.renderer.render(this.scene, this.camera);
 
 		const elapsedTime = this.clock.getElapsedTime();
+		this.material.uniforms.uTime.value = elapsedTime;
 	}
 
 	/**
