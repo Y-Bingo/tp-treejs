@@ -164,4 +164,9 @@ export const APP_CONFIG = [
 		type: EAppType.JOURNEY,
 		title: 'Journey - Animated Galaxy',
 	},
+	{
+		id: '31',
+		type: EAppType.JOURNEY,
+		title: 'Journey - modified material',
+	},
 ];
