@@ -169,4 +169,9 @@ export const APP_CONFIG = [
 		type: EAppType.JOURNEY,
 		title: 'Journey - modified material',
 	},
+	{
+		id: '32',
+		type: EAppType.JOURNEY,
+		title: 'Journey - post-processing',
+	},
 ];
