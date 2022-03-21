@@ -179,4 +179,9 @@ export const APP_CONFIG = [
 		type: EAppType.JOURNEY,
 		title: 'Journey - performance',
 	},
+	{
+		id: '34',
+		type: EAppType.JOURNEY,
+		title: 'Journey - intro and loading progress',
+	},
 ];
