@@ -4,11 +4,14 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+import fireFliesFragmentShader from '../Shaders/FireFlies/fireFlies.fs.glsl';
+import fireFliesVertexShader from '../Shaders/FireFlies/fireFlies.vs.glsl';
+import portalFragmentShader from '../Shaders/Portal/portal.fs.glsl';
+import portalVertexShader from '../Shaders/Portal/portal.vs.glsl';
 import { BaseJourney } from './BaseJourney';
 
 const loadingBarEle = document.createElement('div') as HTMLElement;
 loadingBarEle.classList.add('loading-bar');
-// const loadingBarEle = document.querySelector('.loading-bar') as HTMLElement;
 
 /**
  * Journey - journey_final
@@ -26,7 +29,9 @@ export class Journey35 extends BaseJourney {
 	protected onCreating(): void {
 		// params
 		this.params = {
-			envMapIntensity: 5,
+			clearColor: 0x191919,
+			portalColorStart: 0xe6d0e6,
+			portalColorEnd: 0x000000,
 		};
 
 		// clock
@@ -91,7 +96,7 @@ export class Journey35 extends BaseJourney {
 	 */
 	protected initCamera(): void {
 		const camera = new THREE.PerspectiveCamera(75, this.width / this.height, 0.1, 100);
-		camera.position.set(-3, 3, 3);
+		camera.position.set(3, 3, 3);
 		this.camera = camera;
 		this.scene.add(camera);
 	}
@@ -99,6 +104,8 @@ export class Journey35 extends BaseJourney {
 	/**
 	 * @override
 	 */
+	private fireFliesMaterial: THREE.ShaderMaterial;
+	private portalLightMaterial: THREE.ShaderMaterial;
 	protected initModel(): void {
 		const scene = this.scene;
 		const loadingMrg = new THREE.LoadingManager(
@@ -137,7 +144,16 @@ export class Journey35 extends BaseJourney {
 		/** Material */
 		const bakeMaterial = new THREE.MeshBasicMaterial({ map: bakeTexture });
 
-		const portalLightMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff });
+		const portalLightMaterial = new THREE.ShaderMaterial({
+			uniforms: {
+				uTime: { value: 0 },
+				uColorStart: { value: new THREE.Color(this.params.portalColorStart) },
+				uColorEnd: { value: new THREE.Color(this.params.portalColorEnd) },
+			},
+			vertexShader: portalVertexShader,
+			fragmentShader: portalFragmentShader,
+		});
+		this.portalLightMaterial = portalLightMaterial;
 
 		const poleLightMaterial = new THREE.MeshBasicMaterial({ color: 0xffffe5 });
 
@@ -160,30 +176,67 @@ export class Journey35 extends BaseJourney {
 
 			scene.add(model);
 		});
+
+		// fireFly
+		const fireFliesGeometry = new THREE.BufferGeometry();
+		const fireFliesCount = 50;
+		const positionArray = new Float32Array(fireFliesCount * 3);
+		const scaleArray = new Float32Array(fireFliesCount);
+		for (let i = 0; i < fireFliesCount; i++) {
+			positionArray[i * 3 + 0] = (Math.random() - 0.5) * 4;
+			positionArray[i * 3 + 1] = (Math.random() - 0.1) * 2;
+			positionArray[i * 3 + 2] = (Math.random() - 0.5) * 4;
+
+			scaleArray[i] = Math.random();
+		}
+		fireFliesGeometry.setAttribute('position', new THREE.BufferAttribute(positionArray, 3));
+		fireFliesGeometry.setAttribute('aScale', new THREE.BufferAttribute(scaleArray, 1));
+
+		const fireFliesMaterial = new THREE.ShaderMaterial({
+			uniforms: {
+				uPixelRatio: { value: Math.min(window.devicePixelRatio, 1) },
+				uSize: { value: 40 },
+				uTime: { value: 0 },
+			},
+			vertexShader: fireFliesVertexShader,
+			fragmentShader: fireFliesFragmentShader,
+			blending: THREE.AdditiveBlending,
+			depthWrite: false,
+			transparent: true,
+		});
+		const fireFilesMesh = new THREE.Points(fireFliesGeometry, fireFliesMaterial);
+		scene.add(fireFilesMesh);
+
+		this.fireFliesMaterial = fireFliesMaterial;
+
+		// DEBUG
+		this.gui.add(fireFliesMaterial.uniforms.uSize, 'value').step(1).min(5).max(100);
+		this.gui.addColor(this.params, 'portalColorStart').onChange(() => {
+			portalLightMaterial.uniforms.uColorStart.value.set(this.params.portalColorStart);
+		});
+		this.gui.addColor(this.params, 'portalColorEnd').onChange(() => {
+			portalLightMaterial.uniforms.uColorEnd.value.set(this.params.portalColorEnd);
+		});
 	}
 
-	private updateAllMaterial(): void {
-		// this.scene.traverse(child => {
-		// 	if (child instanceof THREE.Mesh && child.material instanceof THREE.MeshStandardMaterial) {
-		// 		child.material.envMapIntensity = this.params.envMapIntensity;
-		// 		child.material.needsUpdate = true;
-		// 		child.receiveShadow = true;
-		// 		child.castShadow = true;
-		// 	}
-		// });
+	protected onResize(): void {
+		if (this.fireFliesMaterial) this.fireFliesMaterial.uniforms.uPixelRatio.value = Math.min(window.devicePixelRatio, 1);
 	}
 
 	/**
 	 * @override
 	 */
-	private lastTimeStamp: number = 0;
 	protected onRender(): void {
 		this.controls.update();
 		this.renderer.render(this.scene, this.camera);
 
 		const elapsedTime = this.clock.getElapsedTime();
-		const deltaTime = elapsedTime - this.lastTimeStamp;
-		this.lastTimeStamp = elapsedTime;
+		if (this.fireFliesMaterial) {
+			this.fireFliesMaterial.uniforms.uTime.value = elapsedTime;
+		}
+		if (this.portalLightMaterial) {
+			this.portalLightMaterial.uniforms.uTime.value = elapsedTime;
+		}
 	}
 
 	/**
