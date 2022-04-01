@@ -147,7 +147,7 @@ export class Journey35 extends BaseJourney {
 			// model.traverse((child: THREE.Mesh) => {
 			// 	child.material = bakeMaterial;
 			// });
-			const bakeMesh = gltf.scene.children.find(child => child.name === 'bake') as THREE.Mesh;
+			const bakeMesh = gltf.scene.children.find(child => child.name === 'baked') as THREE.Mesh;
 			bakeMesh.material = bakeMaterial;
 
 			const poleLightAMesh = gltf.scene.children.find(child => child.name === 'poleLightA') as THREE.Mesh;
