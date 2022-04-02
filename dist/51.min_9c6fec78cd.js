@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunktp_threejs=self.webpackChunktp_threejs||[]).push([[51],{4349:(t,n,e)=>{e.r(n),e.d(n,{default:()=>r});const r="varying vec2 vUv;\n\nvoid main() {\n\n    // pattern 3 \n    // float strength = vUv.x;\n\n    // pattern 4\n    // float strength = vUv.y * 1.0;\n\n    // pattern 5\n    // float strength = mod(vUv.y * 10.0, 1.0 );\n\n    // pattern 6\n    float strength = vUv.x;\n    strength = step(0.9, strength);\n\n    gl_FragColor = vec4(strength, strength, strength, 1.0);\n}"}}]);
+//# sourceMappingURL=51.min_9c6fec78cd.js.map

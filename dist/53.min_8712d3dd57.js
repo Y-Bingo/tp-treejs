@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunktp_threejs=self.webpackChunktp_threejs||[]).push([[53],{5160:(e,r,n)=>{n.r(r),n.d(r,{default:()=>o});const o="uniform vec3 uColor;\nuniform sampler2D uTexture;\n\nvarying vec2 vUv;\nvarying float vElevation;\n\nvoid main() {\n    vec4 textureColor = texture2D(uTexture, vUv);\n    textureColor.rgb *= vElevation + 0.5;\n    // gl_FragColor = vec4(uColor, 1.0);\n    gl_FragColor = textureColor;\n}"}}]);
+//# sourceMappingURL=53.min_8712d3dd57.js.map

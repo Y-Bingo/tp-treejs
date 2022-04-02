@@ -1,0 +1,1 @@
+{"version":3,"file":"45.min_36f7a6fa1d.js","mappings":"oIAAA","sources":["webpack://tp_threejs/./src/ThreeJs/Shaders/Pattern/pattern.vs.glsl"],"sourcesContent":["export default \"varying vec2 vUv;\\n\\nvoid main() {\\n\\n    gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(position, 1.0);\\n\\n\\n    vUv = uv;\\n}\";"],"names":[],"sourceRoot":""}

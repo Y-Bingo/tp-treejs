@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunktp_threejs=self.webpackChunktp_threejs||[]).push([[42],{1804:(e,t,n)=>{n.r(t),n.d(t,{default:()=>s});const s="void main() {\n    float distanceToCenter = distance(gl_PointCoord, vec2(0.5));\n    float strength = 0.05 / distanceToCenter - 0.05 * 2.0;\n    gl_FragColor = vec4(1.0, 1.0, 1.0, strength);\n}"}}]);
+//# sourceMappingURL=42.min_e559f7c5cb.js.map

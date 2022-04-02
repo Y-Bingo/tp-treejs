@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunktp_threejs=self.webpackChunktp_threejs||[]).push([[46],{2990:(o,r,e)=>{e.r(r),e.d(r,{default:()=>l});const l="uniform vec3 uDepthColor;\nuniform vec3 uSurfaceColor;\nuniform float uColorOffset;\nuniform float uColorMultiplier;\n\nvarying float vElevation;\n\nvoid main() {\n    float mixStrength = (vElevation + uColorOffset) * uColorMultiplier;\n    vec3 color = mix(uDepthColor, uSurfaceColor, mixStrength);\n    gl_FragColor = vec4(color, 1.0);\n}"}}]);
+//# sourceMappingURL=46.min_9d28e3d5f8.js.map

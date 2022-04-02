@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunktp_threejs=self.webpackChunktp_threejs||[]).push([[50],{3966:(i,o,n)=>{n.r(o),n.d(o,{default:()=>e});const e="varying vec2 vUv;\n\nvoid main() {\n    vec4 modelPosition = modelMatrix * vec4(position, 1.0 );\n    vec4 viewPosition = viewMatrix * modelPosition;\n    vec4 projectionPosition = projectionMatrix * viewPosition;\n\n    gl_Position = projectionPosition;\n\n    vUv = uv;\n}"}}]);
+//# sourceMappingURL=50.min_6ccecb2546.js.map
