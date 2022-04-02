@@ -4,16 +4,13 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { BaseJourney } from './BaseJourney';
 
-const stats = new Stats();
-stats.showPanel(0);
-document.body.appendChild(stats.dom);
-
 /**
  * Journey - performance tips
  */
 
 export class Journey33 extends BaseJourney {
 	private gui: dat.GUI;
+	private stats: Stats;
 	private clock: THREE.Clock;
 	private controls: OrbitControls;
 	private params: any;
@@ -32,6 +29,11 @@ export class Journey33 extends BaseJourney {
 
 		// GUI
 		this.gui = new dat.GUI();
+
+		const stats = new Stats();
+		stats.showPanel(0);
+		document.body.appendChild(stats.dom);
+		this.stats = stats;
 	}
 
 	/**
@@ -100,18 +102,14 @@ export class Journey33 extends BaseJourney {
 	}
 
 	/**
-	 * @override 
+	 * @override
 	 */
 	private lastTimeStamp: number = 0;
 	protected onRender(): void {
 		this.controls.update();
 		this.renderer.render(this.scene, this.camera);
 
-		stats.end(); 
-
-		const elapsedTime = this.clock.getElapsedTime();
-		const deltaTime = elapsedTime - this.lastTimeStamp;
-		this.lastTimeStamp = elapsedTime;
+		this.stats.end();
 	}
 
 	/**
@@ -119,5 +117,6 @@ export class Journey33 extends BaseJourney {
 	 */
 	protected onDestroy(): void {
 		this.gui?.destroy();
+		this.stats?.dom.parentElement && document.body.removeChild(this.stats.dom);
 	}
 }
